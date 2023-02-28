@@ -1,0 +1,57 @@
+= QADO Dataset Pre-Processor
+
+This repository provides a webservice to transform an unstructured
+QA benchmark dataset into a semi-structured format that can be
+transformed by the https://github.com/WSE-research/QADO-question-answering-dataset-RDFizer[QADO RDFizer].
+
+== Installation
+Per default the service will be available at http://localhost:5000.
+You can use Docker or Python to run the service.
+
+=== Using Docker
+To run the prebuild docker image execute the following commands:
+
+[source,bash]
+----
+docker pull bigoli98/qado-dataset-preprocessor:latest
+docker run -itd -p 5000:5000 bigoli98/qado-dataset-preprocessor:latest
+----
+
+=== Using Python directly
+This script requires Python 3.9 or later.
+To execute the Python script directly, just run the following commands:
+
+[source,bash]
+----
+pip install -r requirements.txt
+python app.py
+----
+
+== Endpoints
+The service provides the following endpoints to process data:
+
+* `/process/compositional_wikidata` (POST): This endpoint transforms
+a https://github.com/coastalcph/seq2sparql[Compositional Wikidata Questions dataset].
+The payload has to be
+
+[source,json]
+----
+{
+  "fetch_url": "URL for Plain text data",
+  "language": "Language of the dataset provided by fetch_url"
+}
+----
+
+This endpoint returns the data transformed into JSON.
+
+[source, json]
+----
+[
+  {
+    "id": 0,
+    "question": "Dataset question",
+    "query": "SPARQL query used to answer the question",
+    "lang": "language of the question"
+  }
+]
+----
