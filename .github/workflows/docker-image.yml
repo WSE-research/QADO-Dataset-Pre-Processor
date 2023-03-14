@@ -18,7 +18,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Tag docker image version
       if: startsWith(github.ref, 'refs/tags/')
-      run: docker tag qado-preprocessor:latest "wseresearch/qado-dataset-preprocessor:${{ github.ref_name }}"
+      run: docker tag wseresearch/qado-dataset-preprocessor:latest "wseresearch/qado-dataset-preprocessor:${{ github.ref_name }}"
     - name: Push latest docker image
       if: startsWith(github.ref, 'refs/tags/')
       run: docker push wseresearch/qado-dataset-preprocessor:latest
