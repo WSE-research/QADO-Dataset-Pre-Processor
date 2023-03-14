@@ -1,0 +1,13 @@
+{
+  "services": [
+    {
+      "mode": "dockerfile",
+      "port": "40182:5000",
+      "image": "wseresearch/qado-dataset-preprocessor",
+      "tag": "latest"
+    }
+  ],
+  "ids": {
+    "0": "wseresearch-qado-dataset-preprocessor"
+  }
+}
